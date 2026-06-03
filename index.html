@@ -1,0 +1,1996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AS91382 · 3.4 Develop a Marketing Plan — Papatoetoe High School</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #1a2d4a;
+  --navy-mid: #253d62;
+  --amber: #d4803a;
+  --amber-light: #fef3e6;
+  --cream: #f7f5f1;
+  --white: #ffffff;
+  --teal: #1b7a6e;
+  --teal-light: #e6f4f2;
+  --grade-a: #2a7a3e;
+  --grade-a-light: #e8f5ec;
+  --grade-m: #1d5ba8;
+  --grade-m-light: #e4edf8;
+  --grade-e: #a07000;
+  --grade-e-light: #fdf6e3;
+  --gate-red: #b33030;
+  --gate-light: #fff2f2;
+  --mistake: #c0392b;
+  --muted: #666;
+  --border: #e2ddd8;
+  --sidebar-w: 268px;
+  --topbar-h: 54px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Source Sans 3',sans-serif;background:var(--cream);color:#222;font-size:15px;line-height:1.6}
+a{color:var(--navy);text-decoration:none}
+
+/* ── TOPBAR ── */
+#topbar{
+  position:fixed;top:0;left:0;right:0;height:var(--topbar-h);
+  background:var(--navy);color:#fff;z-index:300;
+  display:flex;align-items:center;padding:0 16px;gap:14px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.25);
+}
+#hamburger{display:none;background:none;border:none;color:#fff;font-size:20px;cursor:pointer;padding:4px 8px;line-height:1}
+#site-title{font-family:'Outfit',sans-serif;font-weight:700;font-size:14px;letter-spacing:0.01em;white-space:nowrap}
+#site-sub{font-size:11px;color:rgba(255,255,255,0.55);white-space:nowrap;margin-left:4px}
+#progress-wrap{display:flex;align-items:center;gap:10px;margin-left:auto}
+#progress-track{width:140px;height:5px;background:rgba(255,255,255,0.18);border-radius:3px;flex-shrink:0}
+#progress-fill{height:5px;background:var(--amber);border-radius:3px;width:0;transition:width .4s}
+#progress-label{font-size:12px;color:rgba(255,255,255,0.6);white-space:nowrap}
+
+/* ── LAYOUT ── */
+#page-wrap{display:flex;min-height:100vh;padding-top:var(--topbar-h)}
+
+/* ── SIDEBAR ── */
+#sidebar{
+  width:var(--sidebar-w);min-height:calc(100vh - var(--topbar-h));
+  background:var(--navy);
+  position:fixed;top:var(--topbar-h);left:0;bottom:0;
+  overflow-y:auto;z-index:200;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.15) transparent;
+}
+#sidebar::-webkit-scrollbar{width:4px}
+#sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.15);border-radius:2px}
+.wk-header{
+  padding:16px 14px 7px;
+  font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.38);
+  border-top:1px solid rgba(255,255,255,0.07);
+}
+.wk-header:first-child{border-top:none;padding-top:12px}
+.sb-item{
+  display:flex;align-items:center;gap:7px;
+  padding:7px 14px 7px 16px;cursor:pointer;
+  font-size:12.5px;color:rgba(255,255,255,0.68);
+  transition:background .15s,color .15s;border-left:3px solid transparent;
+  line-height:1.35;
+}
+.sb-item:hover{background:rgba(255,255,255,0.07);color:#fff}
+.sb-item.active{background:rgba(212,128,58,0.18);color:#f5a060;border-left-color:var(--amber)}
+.sb-item.done .sb-num::after{content:"✓";color:#4fca7a;font-size:10px;margin-left:2px}
+.sb-num{font-family:'Outfit',sans-serif;font-size:10px;font-weight:700;opacity:.45;min-width:20px}
+.sb-item.active .sb-num{opacity:.8}
+.sb-badge{font-size:9px;font-weight:700;padding:2px 5px;border-radius:3px;white-space:nowrap;margin-left:auto;flex-shrink:0}
+.sb-gate{background:#b33030;color:#fff}
+.sb-cp{background:var(--amber);color:#fff}
+
+/* ── MAIN CONTENT ── */
+#main-content{margin-left:var(--sidebar-w);padding:32px 40px 80px;min-height:calc(100vh - var(--topbar-h));max-width:calc(var(--sidebar-w) + 860px);width:100%}
+
+/* ── SECTION DISPLAY ── */
+.section{display:none;animation:fadeIn .2s ease}
+.section.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── SECTION HEADER ── */
+.sec-head{margin-bottom:26px}
+.sec-num{font-family:'Outfit',sans-serif;font-size:11px;font-weight:700;color:var(--amber);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.sec-title{font-family:'Outfit',sans-serif;font-weight:800;font-size:28px;color:var(--navy);line-height:1.2;margin-bottom:10px}
+.sec-badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;font-family:'Outfit',sans-serif}
+.b-week{background:var(--navy);color:#fff}
+.b-lesson{background:#e8edf5;color:var(--navy)}
+.b-gate{background:#b33030;color:#fff}
+.b-cp{background:var(--amber);color:#fff}
+
+/* ── CARDS ── */
+.card{background:#fff;border-radius:9px;padding:20px 24px;margin-bottom:18px;box-shadow:0 1px 3px rgba(0,0,0,0.07),0 2px 8px rgba(0,0,0,0.04)}
+.card-hd{font-family:'Outfit',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.card p{margin-bottom:8px;line-height:1.65}
+.card p:last-child{margin-bottom:0}
+.card ul,.card ol{padding-left:20px;margin-bottom:0}
+.card li{margin-bottom:7px;line-height:1.6}
+.card li:last-child{margin-bottom:0}
+.card strong{font-weight:600;color:#1a1a1a}
+
+/* Colored card borders */
+.card-info{border-left:4px solid #4a90d9}
+.card-info .card-hd{color:#2060a0}
+.card-maori{border-left:4px solid var(--teal);background:var(--teal-light)}
+.card-maori .card-hd{color:var(--teal)}
+.card-mistake{border-left:4px solid var(--mistake)}
+.card-mistake .card-hd{color:var(--mistake)}
+.card-cp{border-left:4px solid var(--amber);background:var(--amber-light)}
+.card-cp .card-hd{color:#b86020}
+.card-gate{border-left:4px solid #b33030;background:var(--gate-light)}
+.card-gate .card-hd{color:#b33030}
+.card-excel{border-left:4px solid var(--grade-e);background:var(--grade-e-light)}
+.card-excel .card-hd{color:var(--grade-e)}
+.card-existing{border-left:4px solid #6b46c1;background:#f5f0ff}
+.card-existing .card-hd{color:#6b46c1}
+
+/* ── GRADE TABS ── */
+.grade-tabs-wrap{margin-bottom:18px}
+.gtab-row{display:flex;gap:3px;margin-bottom:0}
+.gtab{
+  padding:8px 18px;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;
+  border:none;cursor:pointer;border-radius:7px 7px 0 0;
+  background:#eaecf0;color:#555;transition:all .15s;
+}
+.gtab.a.active{background:var(--grade-a);color:#fff}
+.gtab.m.active{background:var(--grade-m);color:#fff}
+.gtab.e.active{background:var(--grade-e);color:#fff}
+.grade-panel{display:none;background:#fff;border-radius:0 8px 8px 8px;padding:20px 24px;box-shadow:0 1px 3px rgba(0,0,0,0.07)}
+.grade-panel.active{display:block}
+.gp-a{border-top:3px solid var(--grade-a)}
+.gp-m{border-top:3px solid var(--grade-m)}
+.gp-e{border-top:3px solid var(--grade-e)}
+.grade-panel h4{font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:10px}
+.gp-a h4{color:var(--grade-a)}
+.gp-m h4{color:var(--grade-m)}
+.gp-e h4{color:var(--grade-e)}
+.grade-panel p{margin-bottom:8px;line-height:1.65}
+.grade-panel p:last-child{margin-bottom:0}
+.grade-panel ul{padding-left:18px}
+.grade-panel li{margin-bottom:6px;line-height:1.6}
+
+/* ── PROMPTS ── */
+.prompts-hd{font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin:22px 0 12px}
+.prompt-list{list-style:decimal;padding-left:22px;margin-bottom:18px}
+.prompt-list li{margin-bottom:10px;line-height:1.65;color:#333}
+.prompt-list li:last-child{margin-bottom:0}
+
+/* ── SECTION NAV ── */
+.sec-nav{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:40px;padding-top:24px;border-top:1px solid var(--border);
+}
+.nav-btn{
+  padding:10px 22px;border-radius:7px;font-family:'Outfit',sans-serif;
+  font-size:13.5px;font-weight:700;cursor:pointer;border:2px solid var(--navy);
+  transition:all .15s;white-space:nowrap;
+}
+.nav-prev{background:transparent;color:var(--navy)}
+.nav-prev:hover{background:var(--navy);color:#fff}
+.nav-prev:disabled{opacity:.3;cursor:default;pointer-events:none}
+.nav-done{background:var(--grade-a);color:#fff;border-color:var(--grade-a)}
+.nav-done:hover{background:#3a9a50}
+.nav-done.is-done{background:#eee;color:#888;border-color:#ddd}
+.nav-next{background:var(--navy);color:#fff}
+.nav-next:hover{background:var(--navy-mid)}
+.nav-next:disabled{opacity:.3;cursor:default;pointer-events:none}
+.nav-center{display:flex;align-items:center;gap:8px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  #hamburger{display:block}
+  #site-sub{display:none}
+  #sidebar{left:calc(-1 * var(--sidebar-w));transition:left .25s}
+  #sidebar.open{left:0;box-shadow:4px 0 20px rgba(0,0,0,0.4)}
+  #main-content{margin-left:0;padding:20px 16px 60px}
+  .sec-title{font-size:22px}
+  #progress-track{width:90px}
+}
+
+/* ── WELCOME PAGE EXTRAS ── */
+.week-map{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;margin:16px 0}
+.wm-card{background:#fff;border-radius:8px;padding:14px 16px;border:1px solid var(--border)}
+.wm-card h4{font-family:'Outfit',sans-serif;font-weight:700;font-size:13px;color:var(--navy);margin-bottom:6px}
+.wm-card p{font-size:13px;color:var(--muted);line-height:1.5}
+.wm-card .cp-chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:6px}
+.chip{font-size:10px;font-weight:700;padding:2px 7px;border-radius:3px;font-family:'Outfit',sans-serif}
+.chip-gate{background:#b33030;color:#fff}
+.chip-cp{background:var(--amber);color:#fff}
+.grade-legend{display:flex;gap:12px;flex-wrap:wrap;margin:12px 0}
+.gl-item{display:flex;align-items:center;gap:8px;background:#fff;border-radius:7px;padding:10px 14px;flex:1;min-width:160px;border:1px solid var(--border)}
+.gl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.gl-a{background:var(--grade-a)}
+.gl-m{background:var(--grade-m)}
+.gl-e{background:var(--grade-e)}
+.gl-item p{font-size:13px;line-height:1.45}
+.gl-item strong{font-family:'Outfit',sans-serif;font-size:12px}
+</style>
+</head>
+<body>
+
+<!-- ── TOPBAR ── -->
+<div id="topbar">
+  <button id="hamburger" onclick="toggleSidebar()">☰</button>
+  <span id="site-title">AS91382 · 3.4 Marketing Plan</span>
+  <span id="site-sub">Papatoetoe High School</span>
+  <div id="progress-wrap">
+    <div id="progress-track"><div id="progress-fill"></div></div>
+    <span id="progress-label">0 / 30</span>
+  </div>
+</div>
+
+<!-- ── SIDEBAR ── -->
+<nav id="sidebar"></nav>
+
+<!-- ── MAIN ── -->
+<div id="page-wrap">
+  <div id="main-content"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════
+     SECTION TEMPLATES (hidden, cloned by JS)
+═══════════════════════════════════════════════════════ -->
+
+<!-- S0: WELCOME -->
+<template id="s0">
+<div class="sec-head">
+  <div class="sec-num">Getting Started</div>
+  <h1 class="sec-title">Welcome — How to Use This Guide</h1>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this site is</div>
+  <p>This guide walks you through every section of your AS91382 Marketing Plan, one lesson at a time. Work through it in order — each section builds on the one before it. By the end of Week 6, your marketing plan is written.</p>
+  <p>Use the sidebar to navigate. Tick off each section as you complete it. Your progress is saved automatically in your browser.</p>
+</div>
+<div class="card card-existing">
+  <div class="card-hd">⚠ Important: Existing Businesses Only</div>
+  <p><strong>You must choose a real, existing business and a specific product that is already on the market.</strong> You are not inventing a new product. You are analysing what is already happening and planning how to market it better.</p>
+  <p>No YES companies. No startups. No concept products. Your chosen business must have a website, social media presence, and enough publicly available information for you to complete a full marketing audit.</p>
+</div>
+<h3 class="prompts-hd">The 6-Week Journey</h3>
+<div class="week-map">
+  <div class="wm-card"><h4>Week 1 — Foundations</h4><p>Choose your business, write your introduction, mission, and SMART business objectives.</p><div class="cp-chips"><span class="chip chip-gate">CP1 GATE</span></div></div>
+  <div class="wm-card"><h4>Week 2 — Marketing Audit</h4><p>Market analysis, trends, current marketing activities, target market, and customer persona.</p><div class="cp-chips"><span class="chip chip-cp">CP2</span></div></div>
+  <div class="wm-card"><h4>Week 3 — Research</h4><p>Design and run your primary research. Competitor and environmental analysis.</p><div class="cp-chips"><span class="chip chip-gate">CP3 GATE</span><span class="chip chip-gate">CP4 GATE</span></div></div>
+  <div class="wm-card"><h4>Week 4 — Analysis</h4><p>Analyse your research data. SWOT, Ansoff Matrix, Boston Matrix, and marketing assumptions.</p><div class="cp-chips"><span class="chip chip-cp">CP5</span></div></div>
+  <div class="wm-card"><h4>Week 5 — Strategy</h4><p>SMART marketing objectives. The full 4Ps marketing mix. Sales forecast.</p><div class="cp-chips"><span class="chip chip-cp">CP6</span><span class="chip chip-cp">CP7</span></div></div>
+  <div class="wm-card"><h4>Week 6 — Marketing Plan</h4><p>Contingency plans, action plan, monitoring, budget. Final submission.</p><div class="cp-chips"><span class="chip chip-cp">CP8</span></div></div>
+</div>
+<h3 class="prompts-hd">Understanding the Grade Language</h3>
+<div class="grade-legend">
+  <div class="gl-item"><div class="gl-dot gl-a"></div><p><strong>Achieved — Describe</strong><br>You identify and describe what is happening, using evidence. You cover all required sections.</p></div>
+  <div class="gl-item"><div class="gl-dot gl-m"></div><p><strong>Merit — Explain</strong><br>You explain why and how. You make the connections between sections clear and visible.</p></div>
+  <div class="gl-item"><div class="gl-dot gl-e"></div><p><strong>Excellence — Integrate</strong><br>Every section does work for every other section. Your SWOT justifies your Ansoff. Your persona justifies your pricing. The whole plan connects.</p></div>
+</div>
+<h3 class="prompts-hd">How to use the grade tabs</h3>
+<p style="margin-bottom:16px;color:#555">Each section has three tabs showing what Achieved, Merit, and Excellence looks like for that section. Start with Achieved and use the Merit and Excellence tabs as a target to push your writing further.</p>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" disabled>← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(0)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(1)">Next: Business Selection →</button>
+</div>
+</template>
+
+<!-- S1: BUSINESS & PRODUCT SELECTION -->
+<template id="s1">
+<div class="sec-head">
+  <div class="sec-num">Section 1 · Week 1 · Lesson 2–3</div>
+  <h1 class="sec-title">Business &amp; Product Selection</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 1</span><span class="badge b-lesson">Lessons 2–3</span><span class="badge b-gate">⚠ CP1 Hard Gate</span></div>
+</div>
+<div class="card card-gate">
+  <div class="card-hd">⚠ Hard Gate — No student proceeds to Week 2 without teacher approval</div>
+  <p>Your business and product choice must be approved before you begin any other section. The CP1 submission at the end of Lesson 5 is your business name, specific product, and a 3-sentence justification. Your teacher will either approve or redirect you.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>You are choosing the real, existing business and specific product you will analyse for the next six weeks. The choice matters — you need a product with enough publicly available information to complete every section of this plan. Choose something you are genuinely interested in.</p>
+  <p>You are choosing a <strong>specific product</strong>, not a whole brand. Not "Nike" — "Nike Air Force 1 Low." Not "Sanitarium" — "Sanitarium UP&amp;GO Original Oat Milk." A specific product you can price, describe, and compare to direct competitors.</p>
+</div>
+<div class="card card-existing">
+  <div class="card-hd">Selection Criteria — all boxes must tick</div>
+  <ul>
+    <li>This is an existing business, currently operating and selling this product right now.</li>
+    <li>I have chosen a specific product — not the whole brand, not a product range.</li>
+    <li>I can find the product's current price online.</li>
+    <li>The business has a website, social media presence, and at least one news or review article about it.</li>
+    <li>There is enough publicly available information to write a full market analysis, customer analysis, and competitor analysis.</li>
+    <li>I have genuine interest in this business and could research it for 6 weeks.</li>
+    <li>This is not a YES company, startup, concept product, or anything that does not yet exist.</li>
+  </ul>
+</div>
+<h3 class="prompts-hd">Writing Prompts for CP1</h3>
+<ol class="prompt-list">
+  <li>What is your chosen business name and the specific product you have selected?</li>
+  <li>Where is this product currently sold? (e.g., supermarkets, online, specialty stores)</li>
+  <li>What sources have you already found? List at least: the business website, product page, pricing, social media account, and one news or review article.</li>
+  <li>In one sentence: why does this business have enough publicly available information to complete a full marketing audit?</li>
+  <li>In one sentence: why is this specific product (not the whole brand) appropriate for this standard?</li>
+  <li>In one sentence: why have you chosen this business — what is your genuine connection or interest?</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes at CP1</div>
+  <ul>
+    <li><strong>Choosing the whole brand</strong> — "Apple" is not a product. "Apple AirPods Pro (2nd gen)" is.</li>
+    <li><strong>Choosing a business with no information</strong> — a local small business with no website will leave you stuck in Week 2.</li>
+    <li><strong>Choosing a YES or startup product</strong> — you cannot write a marketing audit for a product that does not exist yet.</li>
+    <li><strong>Choosing a business you know nothing about</strong> — you will be researching this for six weeks. Pick something that interests you.</li>
+  </ul>
+</div>
+<div class="card card-cp">
+  <div class="card-hd">CP1 Submission — End of Lesson 5</div>
+  <p><strong>What to submit:</strong> Your business name, specific product, and a 3-sentence justification (publicly available information, product appropriateness, your genuine interest).</p>
+  <p><strong>How to submit:</strong> Via the CP1 Assignment in the Teams Assignments tab.</p>
+  <p><strong>What happens next:</strong> Your teacher will approve or redirect. No student proceeds to Week 2 without approval. If redirected, you will be given a specific alternative to investigate.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(0)">← Welcome</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(1)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(2)">Next →</button>
+</div>
+</template>
+
+<!-- S2: BUSINESS BACKGROUND -->
+<template id="s2">
+<div class="sec-head">
+  <div class="sec-num">Section 2 · Week 1 · Lesson 3</div>
+  <h1 class="sec-title">Introduction: Business Background</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 1</span><span class="badge b-lesson">Lesson 3</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Your introduction gives context to your entire marketing plan. A reader who knows nothing about your chosen business should understand — after reading this — exactly what the business does, what the specific product is, and where it sits in the market.</p>
+  <p>For an existing business, this section should be based on evidence from the business's own materials (website, annual report, about page) and secondary research, not your personal opinion.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe</h4>
+    <p>You accurately describe the business: when it was founded, what it does, who it sells to, and what makes the chosen product distinctive. You describe what problem the product solves for the customer. Your description is factually accurate and based on sources.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain</h4>
+    <p>You explain the significance of the business and product — not just what it is, but why it exists and what gap it fills in the market. You explain how the product fits within the business's overall range and positioning. Your description shows market context, not just product description.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Integrate</h4>
+    <p>You evaluate the product's current market position with evidence. You note where the product is strong and where there may be challenges. You foreshadow how the business context will shape your marketing analysis — you write the introduction knowing what the rest of the plan will say.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Research &amp; Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>When was this business founded? What is its ownership structure (private, public, New Zealand-owned)?</li>
+  <li>What is the specific product? Describe it clearly — what it is, what it does, key features, format, and size or variants.</li>
+  <li>What problem does this product solve, or what need does it meet? What does the customer get from buying it?</li>
+  <li>Where is this product currently sold and at what price? Who is the intended customer?</li>
+  <li>What is the product's unique selling point — what makes it different from alternatives currently on the market?</li>
+</ol>
+<div class="card card-maori">
+  <div class="card-hd">🌿 Whanaungatanga — Business and Community</div>
+  <p>Whanaungatanga refers to the sense of kinship and belonging built through relationship. Consider: does this business have a genuine connection to its community or customer base? Does the product carry a story? If the business was founded by people with a personal connection to the problem the product solves, that is Whanaungatanga in action.</p>
+  <p>This is not compulsory here — only include it if it genuinely applies to your chosen business.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(1)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(2)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(3)">Next →</button>
+</div>
+</template>
+
+<!-- S3: MISSION, VISION & VALUES -->
+<template id="s3">
+<div class="sec-head">
+  <div class="sec-num">Section 3 · Week 1 · Lesson 4</div>
+  <h1 class="sec-title">Mission, Vision &amp; Values</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 1</span><span class="badge b-lesson">Lesson 4</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The mission statement tells us what the business does and why it exists. The vision statement tells us where the business is headed. Corporate values tell us how the business operates. Together, these three things shape every marketing decision.</p>
+  <p>For an existing business, find these on the company website (About page, company overview, annual report). Some businesses do not have a formal mission statement — in that case, describe the business's evident direction and values based on its marketing and communications.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — State</h4>
+    <p>You state the mission and vision statements, with the source. You list the business's stated values. Where no formal mission exists, you describe the evident business direction based on evidence.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain</h4>
+    <p>You explain how the mission and values shape the business's marketing approach. You show specifically how the business's values show up in its marketing — in its brand voice, its product choices, its promotional decisions.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate</h4>
+    <p>You evaluate alignment between the business's stated values and its actual marketing practice. Does the business live by its mission in the way it markets itself? You note where there is genuine alignment and where there may be gaps. This evaluation sets up your later analysis of the current marketing activities.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Research &amp; Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What is the business's mission statement? Where did you find it? (Cite the source.)</li>
+  <li>What is the business's vision statement or stated long-term direction?</li>
+  <li>What values does the business state? List them and briefly describe what each means in practice.</li>
+  <li>How do the business's marketing materials (website copy, social media tone, advertising) reflect these values?</li>
+  <li>Are there any gaps between stated values and actual practice? (This is an Excellence-level question — only include if you can support it with evidence.)</li>
+</ol>
+<div class="card card-maori">
+  <div class="card-hd">🌿 Tikanga — Values as Practice</div>
+  <p>Tikanga means doing things the right way — the correct protocols and values that guide behaviour. Ask yourself: does this business's stated mission reflect tikanga in its marketing? Does it advertise honestly? Does it deliver on its promises to customers? Is the product consistent with its values?</p>
+  <p>If kaitiakitanga (environmental stewardship) appears in the business's values, the question to ask is: does the business's marketing genuinely reflect this, or is it a marketing claim without substance?</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(2)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(3)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(4)">Next →</button>
+</div>
+</template>
+
+<!-- S4: SMART BUSINESS OBJECTIVES -->
+<template id="s4">
+<div class="sec-head">
+  <div class="sec-num">Section 4 · Week 1 · Lesson 5</div>
+  <h1 class="sec-title">SMART Business Objectives</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 1</span><span class="badge b-lesson">Lesson 5</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Business objectives are what the whole organisation is trying to achieve. They are broader than marketing objectives (which you will write in Week 5). SMART business objectives are Specific, Measurable, Achievable, Relevant, and Time-bound.</p>
+  <p><strong>Important:</strong> Business objectives could be achieved through many means — marketing, product development, cost reduction, new markets. Marketing objectives (Week 5) are specifically about what your marketing plan will achieve.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — State</h4>
+    <p>You state 3–5 SMART business objectives for your chosen business, with evidence of where they came from (annual report, company statements, or your own reasoned inference from what you know about the business).</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain</h4>
+    <p>You explain how each objective connects to the business's mission and to the market situation you will analyse in the marketing audit. You show why these particular objectives are appropriate for this business at this time.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate</h4>
+    <p>You evaluate whether the objectives are ambitious and realistic given what you know about the business context. You note how achieving these objectives will require specific marketing decisions — which sets up the strategy sections in Week 5. The objectives thread through your whole plan.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What business objectives does this company publicly state? (Check: annual report, investor presentations, company website.)</li>
+  <li>If no explicit objectives are stated, what objectives can you reasonably infer from the business's actions and marketing? State these as SMART objectives with your reasoning.</li>
+  <li>For each objective: Is it Specific? Measurable? Achievable? Relevant to the mission? Time-bound? Adjust each one until it meets all five criteria.</li>
+  <li>How do these business objectives connect to the business's mission and values from Section 3?</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes</div>
+  <ul>
+    <li><strong>Confusing business and marketing objectives</strong> — "Increase social media followers by 20%" is a marketing objective. "Grow revenue by 15% by June 2026" is a business objective.</li>
+    <li><strong>Vague objectives</strong> — "Improve customer satisfaction" is not SMART. "Achieve a 4.5-star average Google review rating by December 2026" is.</li>
+    <li><strong>Invented objectives</strong> — Use real evidence where possible. If you are inferring, say so clearly.</li>
+  </ul>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(3)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(4)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(5)">Next →</button>
+</div>
+</template>
+
+<!-- S5: MARKET ANALYSIS SIZE -->
+<template id="s5">
+<div class="sec-head">
+  <div class="sec-num">Section 5 · Week 2 · Lesson 6</div>
+  <h1 class="sec-title">Market Analysis: Size &amp; Value</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 2</span><span class="badge b-lesson">Lesson 6</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The market analysis establishes the opportunity. How big is the market your product operates in? How much is it worth? How many customers are in it? This data gives context for every target and forecast you will set later.</p>
+  <p>The key decision: define the right market level. A student writing about Allbirds Wool Runners should write about the NZ premium footwear market — not the global footwear industry. Define the market as the one your specific product actually competes in.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">Where to Find Market Data</div>
+  <ul>
+    <li><strong>Stats NZ</strong> — population, household spending, demographic data</li>
+    <li><strong>Industry association reports</strong> — market size, volume, growth statistics</li>
+    <li><strong>Company annual reports</strong> — sometimes include market share or industry size data</li>
+    <li><strong>News and business media</strong> — Stuff, NZHerald business section, RNZ business</li>
+    <li><strong>IBISWorld / Mintel</strong> — if your school has access, these have detailed industry reports</li>
+    <li><strong>Google + cite date</strong> — always check when data was published; don't use figures older than 5 years</li>
+  </ul>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — State with Evidence</h4>
+    <p>You present key market statistics — market size (value or volume), number of participants, and current growth rate. Each statistic is cited with its source and date. Your data is relevant to the specific market your product operates in.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain Significance</h4>
+    <p>You explain what the market size data means for your product's opportunity. A growing market is not just a fact — you explain why the growth matters for this specific business at this time. You show why you have defined the market at this level (not broader, not narrower).</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate</h4>
+    <p>You evaluate what the market size data means for your product's realistic potential. You note any tensions in the data — for example, if overall market growth is strong but the specific product category is plateauing. You use the market data to justify the scale of your later sales forecast.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Research &amp; Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What market does your product operate in? Define it clearly — product category, geographic scope (NZ, Auckland, national).</li>
+  <li>What is the total value or volume of this market? What is the source and date of this data?</li>
+  <li>What is the current growth rate of this market? Is it growing, stable, or declining?</li>
+  <li>How many consumers or households participate in this market in New Zealand?</li>
+  <li>What does this data tell you about the opportunity for your specific product?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(4)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(5)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(6)">Next →</button>
+</div>
+</template>
+
+<!-- S6: MARKET TRENDS -->
+<template id="s6">
+<div class="sec-head">
+  <div class="sec-num">Section 6 · Week 2 · Lesson 7</div>
+  <h1 class="sec-title">Market Trends</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 2</span><span class="badge b-lesson">Lesson 7</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Market trends are significant changes in consumer behaviour, technology, regulation, or culture that are reshaping the market. For each trend you identify: describe what it is, provide evidence that it is real, and — most importantly — explain how it specifically affects your chosen product.</p>
+  <p>Aim for 2–3 genuinely significant trends. Trends should be specific to your market, not generic statements about "technology is growing" or "people care about health." Push yourself: why does this trend matter for this product?</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe with Evidence</h4>
+    <p>You identify 2–3 market trends and describe each one with evidence. You state how each trend is affecting the market in general. Sources are cited.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain Impact</h4>
+    <p>For each trend, you explain the specific impact on your product. You move beyond "this trend affects the market" to "this trend creates a specific opportunity or threat for my product because..." The connection to your specific product is explicit.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate Significance</h4>
+    <p>You evaluate which trend is most significant for your product and why. You note where trends create tensions — for example, two trends pulling in opposite directions. You connect trend analysis forward to your SWOT and Ansoff placement in Week 4.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts — for each trend</h3>
+<ol class="prompt-list">
+  <li>Name the trend clearly. What is happening in the market? Give it a label (e.g., "Premiumisation", "Sustainability focus", "Digital-first shopping").</li>
+  <li>What is the evidence for this trend? Cite a specific statistic, report, or example that demonstrates it is real.</li>
+  <li>How does this trend specifically affect your product? Does it create an opportunity, a threat, or both?</li>
+  <li>Which trend is most significant for your product, and why?</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes</div>
+  <ul>
+    <li>Writing generic trends ("the internet is growing") — make it specific to your market</li>
+    <li>Describing a trend without connecting it to your product — always answer "so what does this mean for my product?"</li>
+    <li>Using outdated statistics — check publication dates on all sources</li>
+  </ul>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(5)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(6)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(7)">Next →</button>
+</div>
+</template>
+
+<!-- S7: CURRENT MARKETING AUDIT -->
+<template id="s7">
+<div class="sec-head">
+  <div class="sec-num">Section 7 · Week 2 · Lesson 8</div>
+  <h1 class="sec-title">Current Marketing Activities Audit</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 2</span><span class="badge b-lesson">Lesson 8</span><span class="badge b-cp">CP2 Checkpoint</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>This is a snapshot of what the business is currently doing across the four Ps — Product, Price, Promotion, and Place. You are not yet recommending changes. You are simply documenting and evaluating the current state.</p>
+  <p>This audit is the foundation of your marketing strategy. You cannot plan improvements without first understanding what already exists. Be specific — use actual product features, actual prices, actual channels, actual campaigns.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe Current State</h4>
+    <p>You describe what the business is currently doing across all four Ps. Product features, current price, current promotional activities, and current distribution channels. Information is accurate and sourced.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain Effectiveness</h4>
+    <p>You explain how effective the current marketing activities are — not just what they are, but how well they reach and resonate with the target market. You identify where the current approach works and where there are gaps. You begin to set up what needs to change in your strategy.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate Against Target Market Needs</h4>
+    <p>You evaluate the current marketing activities against what your target market analysis (Section 8) reveals about customer needs and behaviour. You identify specific misalignments between current activities and the target customer. This evaluation directly informs your strategy recommendations in Week 5.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Audit Prompts — work through each P</h3>
+<ol class="prompt-list">
+  <li><strong>Product:</strong> What are the current product features, packaging, branding, and unique selling point? What does the product promise to the customer?</li>
+  <li><strong>Price:</strong> What is the current price? What pricing strategy does this suggest (premium, competitive, economy)? How does it compare to alternatives in the market?</li>
+  <li><strong>Promotion:</strong> What promotional activities is the business currently using? Name specific channels (Instagram, TV, in-store, influencers), content types, and frequency where possible.</li>
+  <li><strong>Place:</strong> Where is the product currently sold? (Supermarkets, online, specialty stores, direct to consumer?) How widely is it distributed?</li>
+  <li>Where is the current marketing working well? Where are the gaps?</li>
+</ol>
+<div class="card card-maori">
+  <div class="card-hd">🌿 Manaakitanga — How Marketing Treats Customers</div>
+  <p>Manaakitanga is hospitality, care, and respect for others — uplifting the mana of those you are in relationship with. Consider: does this business's current marketing treat customers with genuine respect and care? Does it build community and trust, or does it simply push sales? This is an analytical lens, not a judgement — and only include it if it genuinely applies.</p>
+</div>
+<div class="card card-cp">
+  <div class="card-hd">CP2 Checkpoint — End of Lesson 8</div>
+  <p><strong>What to submit:</strong> Your drafted market size, market trends, and current marketing activities audit sections.</p>
+  <p><strong>Note:</strong> This is a soft checkpoint — no gate. Submit what you have, even if incomplete. Flag any gaps clearly. Your teacher will give you feedback that helps you in Week 4.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(6)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(7)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(8)">Next →</button>
+</div>
+</template>
+
+<!-- S8: CUSTOMER ANALYSIS -->
+<template id="s8">
+<div class="sec-head">
+  <div class="sec-num">Section 8 · Week 2 · Lesson 9</div>
+  <h1 class="sec-title">Customer Analysis — Target Market</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 2</span><span class="badge b-lesson">Lesson 9</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The customer analysis describes who actually buys this product. There are two parts: <strong>demographics</strong> (measurable facts about the customer: age, income, location, occupation) and <strong>psychographics</strong> (values, attitudes, lifestyle, digital behaviour). You need both — demographics tell you who the customer is; psychographics tell you why they make the choices they make.</p>
+  <p>Build this from evidence — look at the company's own marketing, social media content and tone, investor presentations, and any research on the demographic the brand targets.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">Where to Find Customer Data</div>
+  <ul>
+    <li><strong>Social media</strong> — Who is commenting and engaging? What tone does the brand use? Which posts get the most traction?</li>
+    <li><strong>Brand language</strong> — How does the business describe its customer on its website? Who is the implied reader?</li>
+    <li><strong>Investor presentations</strong> — Often include explicit target market data and demographic breakdowns</li>
+    <li><strong>Media coverage</strong> — Profiles and reviews often describe the typical customer</li>
+  </ul>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe</h4>
+    <p>You describe the target market with both demographic and psychographic detail. Your description is based on evidence, not assumption. You identify the customer's buying motivation — why would this person buy this specific product?</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain</h4>
+    <p>You explain the connection between the customer's values and the product's positioning. You show specifically why this customer would choose this product over alternatives. The buying motivation is linked to product features, not stated in vague terms.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate</h4>
+    <p>You evaluate the target market description critically — where do the customer's values align with the product's competitive advantage? Are there any gaps or tensions (customers who could be reached but currently are not)? You use this evaluation to set up your strategy decisions in Week 5.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Research Prompts</h3>
+<ol class="prompt-list">
+  <li><strong>Demographics:</strong> What age range? What income level? Where do they live (urban/suburban, NZ region)? What is their typical occupation or life stage?</li>
+  <li><strong>Psychographics:</strong> What values does the business's marketing appeal to? What lifestyle does the target customer lead? What do they care about beyond the product?</li>
+  <li><strong>Digital behaviour:</strong> Which social platforms does this customer use? How much time do they spend online? Do they shop online?</li>
+  <li><strong>Buying motivation:</strong> Why would this specific customer buy this product, on this occasion, at this price? What problem does it solve for them?</li>
+  <li><strong>Pain points:</strong> What frustrations or unmet needs does this customer have that this product addresses?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(7)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(8)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(9)">Next →</button>
+</div>
+</template>
+
+<!-- S9: CUSTOMER PERSONA -->
+<template id="s9">
+<div class="sec-head">
+  <div class="sec-num">Section 9 · Week 2 · Lesson 10</div>
+  <h1 class="sec-title">Customer Persona</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 2</span><span class="badge b-lesson">Lesson 10</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>A customer persona is a detailed, semi-fictional profile of a specific individual who represents your ideal customer. It takes the abstract "target market" and turns it into a real person — with a name, a life, a job, a pain point, and a reason to buy.</p>
+  <p>The purpose: when you make strategy decisions in Week 5, the question you ask is "Would this decision make sense for this person?" That is when the persona pays off.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What a Persona Includes</div>
+  <ul>
+    <li>Name, age, occupation, location, income</li>
+    <li>Life stage and living situation</li>
+    <li>Passions, interests, values</li>
+    <li>Pain points — what frustrations does this person experience that your product solves?</li>
+    <li>Shopping habits — how, where, and when do they buy?</li>
+    <li>Digital personality — which platforms, how much time, what content?</li>
+    <li>Buying motivation — why would this specific person buy this specific product?</li>
+  </ul>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — A Believable Person</h4>
+    <p>Your persona feels like a real person, not a list of statistics. It includes demographics, psychographics, a pain point, and a buying motivation. The persona is consistent with the target market description in Section 8.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Pain Point Connects to Product</h4>
+    <p>The persona's pain points and values are explicitly connected to the product's features and competitive advantage. You can clearly explain why this person would choose this product, not just any product in the category.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Persona Drives Decisions</h4>
+    <p>You refer back to the persona when making strategy decisions — pricing, channel selection, content type. The persona is a tool, not a decoration. In Week 5, you cite the persona to justify why a specific promotion channel is right, why a price point works, why a particular distribution channel is appropriate.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Build Your Persona</h3>
+<ol class="prompt-list">
+  <li>Give your persona a name. How old are they? What do they do for work? Where do they live?</li>
+  <li>What is their income level? What is their living situation?</li>
+  <li>What do they care about beyond work — hobbies, values, causes?</li>
+  <li>What is their main pain point that your product addresses? (What problem do they have that your product solves?)</li>
+  <li>How do they usually shop for this kind of product? Where do they find out about new products?</li>
+  <li>In one sentence: why would this person buy your product specifically?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(8)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(9)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(10)">Next →</button>
+</div>
+</template>
+
+<!-- S10: PRIMARY RESEARCH DESIGN -->
+<template id="s10">
+<div class="sec-head">
+  <div class="sec-num">Section 10 · Week 3 · Lesson 11</div>
+  <h1 class="sec-title">Primary Research Design</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 3</span><span class="badge b-lesson">Lesson 11</span></div>
+</div>
+<div class="card card-existing">
+  <div class="card-hd">⚠ Important for Existing Products</div>
+  <p>Unlike a YES company taking a new product to market and gathering sales data, you are analysing an <strong>existing product</strong>. Your primary research will typically be a survey of potential customers about their awareness of, attitudes toward, and purchasing behaviour related to the product.</p>
+  <p>You cannot use MVP sales data as your primary research — the product already exists. Your survey investigates what your target market thinks about the product.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>You are designing the research instrument — the survey or interview questions — that you will deploy in Lesson 12. Good primary research is specifically designed to fill gaps in your secondary research and to inform specific marketing decisions.</p>
+  <p>Target: minimum 15 responses. Aim for respondents who match your target market profile. Your research instrument must be approved (CP4 gate) before you deploy it.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Well-Designed Survey</h4>
+    <p>Your survey has at least 8 relevant questions, is clearly worded, and covers product awareness, attitudes, purchasing behaviour, and at least one question relevant to a specific marketing decision. An introductory statement explains the purpose.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Questions Linked to Decisions</h4>
+    <p>Each question is clearly linked to a specific marketing decision you will need to make. You explain, in your notes, why you are asking each question and what you will do with the answer. The research is targeted, not generic.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Filling Specific Gaps</h4>
+    <p>Your research instrument is designed to fill specific gaps identified from your secondary research. The questions target areas where you lack data and where the answers will change a marketing decision. The research is strategic, not just informational.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Design Prompts</h3>
+<ol class="prompt-list">
+  <li>What specific marketing decisions do you need primary research to help make? (e.g., pricing, promotion channel, product improvement)</li>
+  <li>For each decision, what question would give you the information you need?</li>
+  <li>Include at least one question on brand or product awareness, one on attitudes, and one on purchasing behaviour.</li>
+  <li>Include 2–3 demographic questions so you can check whether respondents match your target market.</li>
+  <li>Check each question: Is it leading? Is it double-barrelled? Is it clear to someone with no background in marketing?</li>
+</ol>
+<div class="card card-maori">
+  <div class="card-hd">🌿 Manaakitanga &amp; Whanaungatanga in Research</div>
+  <p><strong>Manaakitanga</strong> — respect for your participants. Your survey should include an introductory statement that explains what the research is for, how data will be used, and that participation is voluntary. Treat respondents with care.</p>
+  <p><strong>Whanaungatanga</strong> — the relationship between researcher and participant. The quality of your research depends on people feeling comfortable enough to answer honestly. A rushed, impersonal survey gets rushed, impersonal answers.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(9)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(10)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(11)">Next →</button>
+</div>
+</template>
+
+<!-- S11: PRIMARY RESEARCH EXECUTION -->
+<template id="s11">
+<div class="sec-head">
+  <div class="sec-num">Section 11 · Week 3 · Lesson 12</div>
+  <h1 class="sec-title">Primary Research: Execution</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 3</span><span class="badge b-lesson">Lesson 12</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>You are deploying your approved research instrument and collecting responses. In your marketing plan, this section briefly describes the methodology — how you conducted the research, who participated, and what limitations apply.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe Methodology</h4>
+    <p>You describe how the research was conducted: method (survey or interview), platform (Google Forms, in person), number of responses, and who participated. Your research instrument is included as an appendix or evidence.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Note Limitations</h4>
+    <p>You explain who participated and note any relevant limitations — for example, if respondents were mostly classmates (convenience sample), you acknowledge that this may not fully represent the target market and explain how this affects the reliability of your findings.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate Reliability</h4>
+    <p>You evaluate the reliability of your research: does the sample represent the target market? Are there response biases? How confident are you in the findings? This evaluation affects how strongly you rely on the primary research findings in your strategy.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Methodology Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>How was the research conducted? (Google Forms survey, in-person interviews, class survey?)</li>
+  <li>How many responses did you receive? What was the target?</li>
+  <li>Who participated? Describe the respondents — age range, relationship to the brand, how they were recruited.</li>
+  <li>Does this sample match your target market profile from Section 8? If not, note the limitation.</li>
+  <li>Attach your survey as an appendix or evidence. Note the date it was deployed.</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">If you couldn't get 15 responses</div>
+  <p>If you struggled to reach your target number, use what you have and note the limitation clearly. Class peers as a convenience sample is acceptable — just acknowledge it. What matters in your analysis is that you connect findings to decisions, regardless of sample size.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(10)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(11)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(12)">Next →</button>
+</div>
+</template>
+
+<!-- S12: COMPETITOR ANALYSIS -->
+<template id="s12">
+<div class="sec-head">
+  <div class="sec-num">Section 12 · Week 3 · Lesson 13</div>
+  <h1 class="sec-title">Competitor Analysis</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 3</span><span class="badge b-lesson">Lesson 13</span><span class="badge b-gate">⚠ CP3 Hard Gate</span></div>
+</div>
+<div class="card card-gate">
+  <div class="card-hd">⚠ Hard Gate — CP3 Submission</div>
+  <p>Your customer analysis (Section 8) and competitor analysis (this section) must be submitted together as CP3 by the end of Lesson 13. No student proceeds to Week 4 without teacher approval of both sections.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The competitor analysis identifies who the real competition is for your specific product and how they compare. You are looking for <strong>direct competitors</strong> — products that serve the same customer need at a similar price and quality level, not entire company comparisons.</p>
+  <p>For each competitor, describe their product, pricing, key promotional strategies, distribution channels, and what makes them a threat. Then identify how your product differentiates itself.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe Competitors</h4>
+    <p>You identify at least two direct competitors and describe each one's product features, pricing, key promotional strategies, and distribution channels. You use a comparison table or structured layout. You state how your product is different.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain Competitive Advantage</h4>
+    <p>You explain where your product has a genuine advantage over each competitor and where it is at a disadvantage. You move beyond listing facts to interpreting what the comparison means for your product's competitive position. The analysis sets up your SWOT.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate Competitive Position</h4>
+    <p>You evaluate where your product has a sustainable competitive advantage — one that is difficult for competitors to copy quickly. You note any competitive risks (a competitor who could erode your advantage) and connect this to your SWOT threats. The competitive analysis informs your pricing, promotion, and place decisions in Week 5.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Research Prompts — for each competitor</h3>
+<ol class="prompt-list">
+  <li>Who are the 2–3 direct competitors for your specific product? Be specific — name the product, not just the brand.</li>
+  <li>For each competitor: What is their product? What is the price? Where is it sold? What is their main promotional approach?</li>
+  <li>Create a comparison table: your product vs each competitor across Product, Price, Promotion, Place.</li>
+  <li>Where does your product have an advantage? Where is it at a disadvantage?</li>
+  <li>What is your product's primary point of difference from all competitors?</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes</div>
+  <ul>
+    <li><strong>Comparing brands instead of products</strong> — compare "Allbirds Wool Runner" to "Veja V-10" not "Allbirds" to "Nike"</li>
+    <li><strong>Listing too many competitors</strong> — 2–3 direct competitors in depth is better than 6 in a paragraph each</li>
+    <li><strong>Not identifying a competitive advantage</strong> — if your product has no competitive advantage, that is a finding, not a gap in your analysis</li>
+  </ul>
+</div>
+<div class="card card-cp">
+  <div class="card-hd">CP3 Submission — End of Lesson 13</div>
+  <p><strong>What to submit:</strong> Draft customer analysis (Section 8) + competitor analysis (this section).</p>
+  <p><strong>Status:</strong> Hard gate. Teacher approves before you proceed. Feedback will be returned at the start of Lesson 15.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(11)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(12)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(13)">Next →</button>
+</div>
+</template>
+
+<!-- S13: ENVIRONMENTAL ANALYSIS -->
+<template id="s13">
+<div class="sec-head">
+  <div class="sec-num">Section 13 · Week 3 · Lesson 14</div>
+  <h1 class="sec-title">Environmental Analysis</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 3</span><span class="badge b-lesson">Lesson 14</span><span class="badge b-gate">⚠ CP4 Gate (L15)</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The environmental analysis identifies the significant external factors — outside the business's direct control — that affect the marketing plan. These come from PESTLE: Political, Economic, Social, Technological, Legal, and Environmental factors.</p>
+  <p><strong>Do not list all six categories for completeness.</strong> Choose the 2–3 factors that are genuinely significant for your specific product. Quality over quantity.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — State Relevant Factors</h4>
+    <p>You identify 2–3 external factors relevant to your product and state what each factor is. You use PESTLE categories as appropriate but do not list all six for its own sake.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain Specific Impact</h4>
+    <p>For each factor, you explain its specific impact on the marketing plan — not the market in general, but your product's marketing decisions. The impact is specific and actionable: this factor means that your plan should or should not...</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate Strategic Significance</h4>
+    <p>You evaluate which factors pose the greatest strategic significance for your plan and why. You note where environmental factors create the most risk and where they create opportunity. These factors feed directly into your SWOT analysis threats and opportunities in Section 15.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Analysis Prompts</h3>
+<ol class="prompt-list">
+  <li>Which PESTLE categories are genuinely relevant to your product? List the 2–3 most significant.</li>
+  <li>For each factor: What exactly is happening? What is the evidence? When is this affecting or likely to affect the business?</li>
+  <li>What is the specific impact of each factor on your marketing plan — does it affect your pricing, promotion approach, distribution, or product positioning?</li>
+  <li>Which factor poses the greatest opportunity? Which poses the greatest risk?</li>
+</ol>
+<div class="card card-gate">
+  <div class="card-hd">CP4 Gate — End of Lesson 15</div>
+  <p><strong>What to submit:</strong> Your completed primary research instrument (survey questions), ready to deploy. Must include at least 8 questions. Teacher checks alignment with marketing decisions and ethical research principles.</p>
+  <p><strong>Status:</strong> Hard gate. Your research instrument must be approved before you conduct your primary research.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(12)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(13)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(14)">Next →</button>
+</div>
+</template>
+
+<!-- S14: PRIMARY RESEARCH ANALYSIS -->
+<template id="s14">
+<div class="sec-head">
+  <div class="sec-num">Section 14 · Week 4 · Lesson 16</div>
+  <h1 class="sec-title">Primary Research Analysis</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 4</span><span class="badge b-lesson">Lesson 16</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>You have collected your primary research data. Now you analyse it — turning numbers and answers into findings, and findings into implications for your marketing plan.</p>
+  <p>The key move: do not just describe results. Interpret them. "14 out of 15 respondents had not heard of the product" is a result. "This means our primary marketing objective must be awareness-building before conversion" is an implication.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Present and Describe</h4>
+    <p>You present the key findings from your primary research clearly (with numbers or percentages where applicable) and describe what they show. Findings are organised by topic, not just question-by-question. Charts or tables are used where they help clarity.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Connect to Decisions</h4>
+    <p>For each key finding, you explicitly state the implication for your marketing plan. Each finding connects to a specific decision: "Because X% of respondents said..., our promotional strategy will..." You show the evidence driving the decision.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Challenge and Refine</h4>
+    <p>Your findings either confirm or challenge earlier assumptions from your secondary research. Where the primary research changes something you believed based on secondary data, you acknowledge it and update your analysis. The research is used to test and refine the plan, not just support it.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Analysis Prompts</h3>
+<ol class="prompt-list">
+  <li>What are the 3–5 most significant findings from your research? Summarise each in one sentence with the supporting statistic.</li>
+  <li>For each finding: what does this mean for your marketing plan? Write the implication as a decision statement.</li>
+  <li>Did any findings surprise you, or contradict what your secondary research suggested? If so, how do you reconcile the difference?</li>
+  <li>What did the demographics of your respondents tell you about whether the sample matched your target market?</li>
+  <li>What does the primary research confirm about your earlier target market description and customer persona?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(13)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(14)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(15)">Next →</button>
+</div>
+</template>
+
+<!-- S15: SWOT ANALYSIS -->
+<template id="s15">
+<div class="sec-head">
+  <div class="sec-num">Section 15 · Week 4 · Lesson 17</div>
+  <h1 class="sec-title">SWOT Analysis</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 4</span><span class="badge b-lesson">Lesson 17</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The SWOT is a <strong>synthesis tool</strong>, not a new information section. Every point in your SWOT must be traceable to something you found in the marketing audit. The SWOT should summarise what the audit tells us, organised by Strength, Weakness, Opportunity, and Threat.</p>
+  <p>If a SWOT point cannot be traced to a section of your audit — it does not belong in the SWOT.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Evidence-Based Points</h4>
+    <p>Each SWOT point is stated clearly with a brief description. Each point is supported by evidence from the audit. The four quadrants are balanced — you have identified genuine strengths and real weaknesses, not a list of positives with token negatives.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Strategic Priorities</h4>
+    <p>You use the SWOT to identify strategic priorities — which strengths can be leveraged, which weaknesses need addressing, which opportunities are most accessible, which threats are most urgent. The SWOT is not just a list; it leads to priorities for the marketing strategy.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Tensions and Integration</h4>
+    <p>You note where SWOT points interact — a strength that is also a risk (e.g., a premium price that attracts the right customer but limits market size). You evaluate which SWOT factors have the greatest strategic significance. The SWOT directly justifies your Ansoff placement in Section 16 and informs every strategy decision in Week 5.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">SWOT Building Prompts</h3>
+<ol class="prompt-list">
+  <li><strong>Strengths:</strong> What does this product genuinely do better than competitors? What resources or advantages does the business have? (Cite the audit section for each.)</li>
+  <li><strong>Weaknesses:</strong> Where is the product or business at a disadvantage? What is missing? What do customers complain about? (Be honest — weak SWOT analysis is a mark deduction.)</li>
+  <li><strong>Opportunities:</strong> Which market trends (Section 6) create opportunities? Which customer needs are not fully met? What growth paths are available?</li>
+  <li><strong>Threats:</strong> Which environmental factors (Section 13) or competitor actions (Section 12) pose risks to the plan succeeding?</li>
+  <li>Which single SWOT factor is most important to address in the marketing strategy? Why?</li>
+</ol>
+<div class="card card-maori">
+  <div class="card-hd">🌿 Kaitiakitanga in the SWOT</div>
+  <p>If your chosen business has a sustainability or environmental dimension, Kaitiakitanga (guardianship of resources for future generations) is relevant here. A strong environmental commitment can be a genuine Strength. A failure to live up to sustainability claims, or a product with a high environmental cost, can be a Weakness or Threat. Only include this if it genuinely applies to your business.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(14)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(15)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(16)">Next →</button>
+</div>
+</template>
+
+<!-- S16: ANSOFF MATRIX -->
+<template id="s16">
+<div class="sec-head">
+  <div class="sec-num">Section 16 · Week 4 · Lesson 18</div>
+  <h1 class="sec-title">Ansoff Matrix</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 4</span><span class="badge b-lesson">Lesson 18</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The Ansoff Matrix classifies your growth strategy by asking two questions: is the product new or existing? Is the market new or existing? The four quadrants are Market Penetration (existing product, existing market), Product Development (new product, existing market), Market Development (existing product, new market), and Diversification (new product, new market).</p>
+  <p>For most students working with existing products, your placement will be <strong>Market Penetration</strong> (doing more with the existing product in the existing market) or <strong>Product Development</strong> (modifying or extending the existing product). The key is the justification, not the placement.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Placed and Named</h4>
+    <p>You place the product on the Ansoff Matrix, name the correct growth strategy, and give a brief, evidence-based reason for the placement.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explained and Justified</h4>
+    <p>You explain why this strategy is appropriate for this product at this time. You use evidence from the marketing audit — market size, market growth, current market share, competitive position — to justify the placement. You acknowledge why the other strategies are less appropriate.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Integrated with Strategy</h4>
+    <p>You evaluate what the chosen strategy demands from the marketing plan in Week 5. A Market Penetration strategy means the 4Ps must focus on reach and conversion to existing customers. A Product Development strategy means the 4Ps must emphasise new product features to the existing customer base. The Ansoff placement tells you something specific about what the marketing strategy must do.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>Where does your product sit on the Ansoff Matrix? Which quadrant and why?</li>
+  <li>What evidence from your audit supports this placement? (Reference at least two specific audit findings.)</li>
+  <li>Why is this a more appropriate strategy than the alternatives?</li>
+  <li>What does this growth strategy mean the marketing plan must focus on in Week 5?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(15)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(16)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(17)">Next →</button>
+</div>
+</template>
+
+<!-- S17: BOSTON MATRIX -->
+<template id="s17">
+<div class="sec-head">
+  <div class="sec-num">Section 17 · Week 4 · Lessons 18–19</div>
+  <h1 class="sec-title">Boston Matrix</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 4</span><span class="badge b-lesson">Lessons 18–19</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The Boston Matrix (BCG Matrix) classifies a product by its relative market share and market growth rate. The four categories are: <strong>Star</strong> (high share, high growth), <strong>Cash Cow</strong> (high share, low growth), <strong>Question Mark</strong> (low share, high growth), and <strong>Dog</strong> (low share, low growth).</p>
+  <p>For most student-chosen products, you will sit in <strong>Question Mark</strong> (new or growing product in a fast-growing market) or <strong>Star</strong> (strong product in a growing market). The key is justifying your placement with your market data.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Placed and Named</h4>
+    <p>You place the product on the Boston Matrix, name the correct category, and briefly describe the product's current market share and market growth rate with evidence.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explained with Evidence</h4>
+    <p>You explain the current Boston Matrix position using evidence from the audit — actual or estimated market share, and the market growth rate from your market analysis. You explain why the product is in this category rather than an adjacent one.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Implications Evaluated</h4>
+    <p>You evaluate what the Boston Matrix position means for marketing investment. A Question Mark requires investment to grow market share — the marketing plan must justify that investment. You connect the BCG position to the Ansoff strategy and to the budget and forecasts in your marketing plan.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What is the estimated market share for your product in its category? How did you arrive at this estimate?</li>
+  <li>What is the current market growth rate for your category? (Use your market analysis data from Section 5.)</li>
+  <li>Based on these two factors, which Boston Matrix quadrant does your product sit in?</li>
+  <li>What does this position tell you about the level of marketing investment required and the expected return?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(16)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(17)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(18)">Next →</button>
+</div>
+</template>
+
+<!-- S18: MARKETING ASSUMPTIONS -->
+<template id="s18">
+<div class="sec-head">
+  <div class="sec-num">Section 18 · Week 4 · Lesson 20</div>
+  <h1 class="sec-title">Marketing Assumptions</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 4</span><span class="badge b-lesson">Lesson 20</span><span class="badge b-cp">CP5 Checkpoint</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Marketing assumptions are the informed beliefs about the market, the customer, and the competitive environment that your marketing strategy is built on. They flow directly from your research — every assumption must be traceable to evidence from the audit.</p>
+  <p>This section bridges the audit (what you found) and the strategy (what you will do). Before you can recommend a marketing strategy, you need to state clearly what you are assuming to be true.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — List Assumptions</h4>
+    <p>You state 3–5 marketing assumptions that your strategy will be built on. Each assumption is connected to specific research findings from the audit.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Explain Evidence Basis</h4>
+    <p>For each assumption, you explain the evidence from your audit that supports it. You show the chain of reasoning: "Based on [specific finding], I assume that [specific market truth], which means the marketing strategy should..."</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Evaluate and Justify Strategy Direction</h4>
+    <p>Your assumptions collectively justify a clear strategic direction. You evaluate how confident you are in each assumption and note where assumptions carry risk (if an assumption turns out to be wrong, the contingency plan addresses it). The assumptions section reads as a coherent strategic brief for the Week 5 strategy work.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What do you know (from your audit) about what this market's customers are willing to pay? State this as an assumption.</li>
+  <li>What do you know about which promotion channels reach your target market most effectively? State this as an assumption.</li>
+  <li>What do you assume about the competitive environment — is it stable or likely to change?</li>
+  <li>What assumptions about customer behaviour are driving your strategy choices?</li>
+  <li>For each assumption: what is the evidence base from your audit (cite the section and finding)?</li>
+</ol>
+<div class="card card-cp">
+  <div class="card-hd">CP5 Checkpoint — End of Lesson 20</div>
+  <p><strong>What to submit:</strong> Full marketing audit draft — all sections from SWOT through marketing assumptions. This is a soft checkpoint. Submit what you have, flag any gaps, and act on your teacher's feedback before building the strategy.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(17)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(18)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(19)">Next →</button>
+</div>
+</template>
+
+<!-- S19: SMART MARKETING OBJECTIVES -->
+<template id="s19">
+<div class="sec-head">
+  <div class="sec-num">Section 19 · Week 5 · Lesson 21</div>
+  <h1 class="sec-title">SMART Marketing Objectives</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 5</span><span class="badge b-lesson">Lesson 21</span></div>
+</div>
+<div class="card card-existing">
+  <div class="card-hd">⚠ These are DIFFERENT from your Business Objectives (Section 4)</div>
+  <p>Marketing objectives are specifically about what your marketing plan will achieve. They require marketing activity — not product changes, not cost cuts, not new stores. Business objectives are what the organisation is trying to achieve overall. Marketing objectives are what this plan will achieve through marketing specifically.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>You write 2–3 SMART marketing objectives for your product's marketing plan. Each objective must be traceable to a specific gap or finding identified in the audit — especially from your primary research, SWOT, or marketing assumptions.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — SMART and Relevant</h4>
+    <p>You write 2–3 SMART marketing objectives. Each is Specific (names the target, the metric, and the audience where relevant), Measurable (a number you could check), Achievable, Relevant to the marketing plan, and Time-bound (has a deadline).</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Traced to Audit</h4>
+    <p>Each objective is explicitly connected to a specific finding from the audit. "Based on primary research finding that 80% of respondents had not heard of the product, our first objective is to increase aided brand awareness among 18–30-year-olds in [region] to 30% by [date]." The connection is visible, not assumed.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Strategic Set</h4>
+    <p>The 2–3 objectives together address a strategic priority identified in the SWOT and flow from the Ansoff strategy. Achieving all three objectives would demonstrably move the business toward its overall business objectives. The set is coherent — objectives support each other rather than pulling in different directions.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What gap or finding from the audit most urgently needs to be addressed by the marketing plan?</li>
+  <li>Write one objective that addresses brand awareness or reach. Make it SMART: specific audience, measurable target, time deadline.</li>
+  <li>Write one objective that addresses conversion — turning awareness into sales or action. Make it SMART.</li>
+  <li>Consider a third objective related to loyalty, repeat purchase, or community building.</li>
+  <li>For each objective: trace it back to the specific audit finding that justifies it.</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes</div>
+  <ul>
+    <li>"Increase sales by 20%" — this is a business objective, not a marketing objective. Marketing achieves it through specific activities.</li>
+    <li>"Improve brand awareness" — not measurable. "Increase aided brand recall to 35% among 18–25-year-olds in Auckland by March 2026" is measurable.</li>
+    <li>Objectives with no deadline — add a date.</li>
+    <li>Objectives not connected to any audit finding — trace every objective back to the evidence.</li>
+  </ul>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(18)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(19)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(20)">Next →</button>
+</div>
+</template>
+
+<!-- S20: PRODUCT -->
+<template id="s20">
+<div class="sec-head">
+  <div class="sec-num">Section 20 · Week 5 · Lesson 22</div>
+  <h1 class="sec-title">Product — The First P</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 5</span><span class="badge b-lesson">Lesson 22</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>For an existing product, the Product section of your marketing mix has two parts: an <strong>evaluation of what the product currently is</strong> (features, branding, packaging, unique value proposition) and <strong>recommendations for what the marketing plan will do</strong> in the product area.</p>
+  <p>The recommendations must be justified by your audit — by what the target market needs, by what competitors offer, and by what the primary research revealed about customer satisfaction and pain points.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe and Recommend</h4>
+    <p>You describe the current product (features, packaging, branding, UVP) accurately and make at least one specific product recommendation. The recommendation is connected to the marketing plan, not just a general product improvement idea.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Justify with Audit</h4>
+    <p>Each product recommendation is explicitly justified by evidence from the audit — from the customer analysis, competitor analysis, or primary research. You explain why the recommendation is warranted, not just what it is.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Trade-offs Considered</h4>
+    <p>You evaluate trade-offs: would a product change affect price? Would new packaging cost the business money that the budget section must reflect? You consider how the product recommendation connects to the customer persona — would this change matter to them? You link the UVP to your promotion strategy in Section 22.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>Describe the current product: key features, format, variants, packaging, branding. What is the current unique value proposition?</li>
+  <li>What does the audit suggest about how well the current product meets target market needs? What are the gaps?</li>
+  <li>What specific product recommendations does your marketing plan include? (Could be packaging, branding, product extension, labelling, features.)</li>
+  <li>For each recommendation: what audit evidence justifies it?</li>
+  <li>How does the product's UVP support the marketing objectives you wrote in Section 19?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(19)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(20)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(21)">Next →</button>
+</div>
+</template>
+
+<!-- S21: PRICE -->
+<template id="s21">
+<div class="sec-head">
+  <div class="sec-num">Section 21 · Week 5 · Lesson 23</div>
+  <h1 class="sec-title">Price — The Second P</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 5</span><span class="badge b-lesson">Lesson 23</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The Price section analyses the current pricing strategy, evaluates whether it is appropriate, and recommends whether to maintain, adjust, or change it — with full justification from the audit.</p>
+  <p>Pricing is not just about the number. It signals quality, positions the product relative to competitors, and attracts or repels different segments of the market. Price and brand positioning are inseparable.</p>
+</div>
+<div class="card card-info">
+  <div class="card-hd">Common Pricing Strategies</div>
+  <ul>
+    <li><strong>Premium pricing</strong> — higher than competitors, signals quality and exclusivity</li>
+    <li><strong>Competitive pricing</strong> — aligned with competitor prices, competes on other factors</li>
+    <li><strong>Penetration pricing</strong> — lower than competitors to gain market share, often a temporary strategy</li>
+    <li><strong>Psychological pricing</strong> — $9.99 instead of $10.00, "sale" framing, bundle pricing</li>
+    <li><strong>Cost-plus pricing</strong> — cost of production + desired margin</li>
+  </ul>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe and Name the Strategy</h4>
+    <p>You state the current price, name the pricing strategy being used, and compare it to at least two competitors. You state whether you recommend maintaining or adjusting the price.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Justify the Strategy</h4>
+    <p>You explain why the current pricing strategy is or is not appropriate for the target market and the product's positioning. You use evidence from the competitor analysis and customer analysis to justify your recommendation. If recommending a change, you explain the rationale.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Integrate Positioning and Persona</h4>
+    <p>You evaluate the relationship between price, brand positioning, and the customer persona. Does the price attract the right customer? Could a price increase reinforce premium positioning? Could a price decrease undermine the brand? You connect the pricing decision to the promotion strategy — the value message must match the price point.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What is the current price of the product? How does this compare to 2–3 direct competitors?</li>
+  <li>What pricing strategy is currently being used? What evidence supports your identification of this strategy?</li>
+  <li>Is the current pricing strategy appropriate for the target market and the product's positioning? Why or why not?</li>
+  <li>Do you recommend maintaining, adjusting, or changing the pricing strategy? Justify your recommendation with audit evidence.</li>
+  <li>How does the price support (or conflict with) the product's unique value proposition from Section 20?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(20)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(21)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(22)">Next →</button>
+</div>
+</template>
+
+<!-- S22: PROMOTION -->
+<template id="s22">
+<div class="sec-head">
+  <div class="sec-num">Section 22 · Week 5 · Lesson 24</div>
+  <h1 class="sec-title">Promotion — The Third P</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 5</span><span class="badge b-lesson">Lesson 24</span><span class="badge b-cp">CP6 Checkpoint</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The Promotion section recommends the specific channels, content types, frequency, and messaging for marketing the product. Every recommendation must be justified by the target market analysis — specifically, where the target customer spends their time and what influences their purchasing decisions.</p>
+  <p><strong>Generic "post on social media" is not enough.</strong> Name the specific platform. Explain what content. Justify why that platform reaches your target customer. That is the difference between Achieved and Merit.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Name Strategies</h4>
+    <p>You describe at least three specific promotional strategies. For each: the channel, the content type, and the approximate frequency. Strategies are relevant to the target market.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Justify Each Strategy</h4>
+    <p>Each promotional strategy is justified by specific evidence from the target market analysis and/or primary research. You answer "why this channel" with reference to where the target customer actually spends their time. You explain the call-to-action for each strategy — what do you want the customer to do?</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — The Promotion System</h4>
+    <p>You evaluate how the promotional strategies work together as a coherent system — awareness, interest, desire, action. You note which strategies build brand awareness, which drive traffic, and which convert. You connect promotional strategy back to the customer persona and the UVP, and forward to the marketing objectives. The budget (Section 28) reflects the cost of what you are recommending.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts — for each strategy</h3>
+<ol class="prompt-list">
+  <li>Which channels does your target market use most? What evidence (from Section 8 or primary research) tells you this?</li>
+  <li>For each promotional strategy: name the channel, describe the content type, state the frequency, and explain why this channel reaches your target customer specifically.</li>
+  <li>What is the call-to-action in each strategy — what do you want the customer to do after seeing the promotion?</li>
+  <li>How does each strategy connect to your marketing objectives (Section 19)?</li>
+  <li>What does the current marketing audit (Section 7) tell you about what is already working or not working in the current promotional approach?</li>
+</ol>
+<div class="card card-maori">
+  <div class="card-hd">🌿 Kotahitanga — Community-Building Promotion</div>
+  <p>Kotahitanga means unity and collective action. Marketing strategies that build genuine community — not just followers — reflect this concept. Loyalty programmes, referral campaigns, and marketing that invites customers to participate in the brand story can reflect Kotahitanga. Consider whether any of your promotional strategies build genuine connection rather than simply pushing a message.</p>
+</div>
+<div class="card card-cp">
+  <div class="card-hd">CP6 Checkpoint — End of Lesson 24</div>
+  <p><strong>What to submit:</strong> SMART marketing objectives (Section 19) + Product (Section 20) + Price (Section 21) + Promotion (this section).</p>
+  <p><strong>Status:</strong> Soft checkpoint. No gate. Submit your draft and act on the feedback before finalising your plan.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(21)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(22)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(23)">Next →</button>
+</div>
+</template>
+
+<!-- S23: PLACE -->
+<template id="s23">
+<div class="sec-head">
+  <div class="sec-num">Section 23 · Week 5 · Lesson 25</div>
+  <h1 class="sec-title">Place — The Fourth P</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 5</span><span class="badge b-lesson">Lesson 25</span><span class="badge b-cp">CP7 Checkpoint</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Place (distribution) covers where and how the product reaches the customer. For an existing product, you are evaluating the current distribution channels and recommending whether to maintain, expand, or modify them — with justification from the target market's buying behaviour.</p>
+  <p>The question is not just where the product is sold, but whether the target customer can easily access it in the ways they prefer to shop.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe Channels</h4>
+    <p>You describe the current distribution channels and recommend whether to maintain, add, or modify them. Recommendations are specific — not "sell in more stores" but name the type of store and why.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Justify with Customer Behaviour</h4>
+    <p>Each channel recommendation is justified by the target market's buying behaviour — where they shop, how they prefer to discover and purchase this type of product. You connect place decisions back to the customer persona.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Coherence of the Mix</h4>
+    <p>You evaluate whether the distribution strategy is coherent with the product's positioning and price. A premium product available in discount stores creates a positioning contradiction — you note this if relevant. You connect the place strategy to promotion strategy: channels reinforce each other (e.g., online promotion drives online sales).</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>Where is the product currently sold? What distribution channels are in use?</li>
+  <li>How does the target customer prefer to shop for this type of product — in-store, online, or both?</li>
+  <li>Are the current channels reaching the target market effectively? Are there gaps?</li>
+  <li>What distribution recommendations does your marketing plan make? Justify each one with target market evidence.</li>
+  <li>Does the distribution strategy align with the pricing strategy? (A premium price requires distribution in premium-appropriate locations.)</li>
+</ol>
+<div class="card card-cp">
+  <div class="card-hd">CP7 Checkpoint — End of Lesson 25</div>
+  <p><strong>What to submit:</strong> Place (this section) + Sales Forecast (Section 24) + Preliminary Marketing Budget draft.</p>
+  <p><strong>Status:</strong> Soft checkpoint. No gate.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(22)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(23)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(24)">Next →</button>
+</div>
+</template>
+
+<!-- S24: SALES FORECAST -->
+<template id="s24">
+<div class="sec-head">
+  <div class="sec-num">Section 24 · Week 5 · Lesson 25</div>
+  <h1 class="sec-title">Sales Forecast</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 5</span><span class="badge b-lesson">Lesson 25</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The sales forecast projects how many units (or what revenue) the marketing plan is expected to generate over the plan period. For existing products, your forecast should be based on current sales data where available, plus the incremental impact of your marketing activities.</p>
+  <p><strong>Show your working.</strong> A table with numbers and no reasoning is not a forecast — it is a guess. Every line must have a justification column explaining how you arrived at that number.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Table with Brief Reasoning</h4>
+    <p>You present a sales forecast table covering the plan period (typically month by month). Each period has a projected sales figure and a brief justification. Units and revenue are both included where possible.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Justified Projections</h4>
+    <p>Each projection is explicitly linked to audit data — market size, target market reach, conversion rate assumptions, or the impact of specific promotional activities. You explain why sales are higher in some periods than others (e.g., campaign launch, seasonal factors).</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Assumptions Evaluated</h4>
+    <p>You evaluate the assumptions underlying the forecast — conversion rates, reach estimates, market share targets. You note where the forecast is sensitive to assumptions that might not hold. You connect the forecast to the contingency plans in Section 25: if Month 2 sales fall below forecast, the contingency triggers.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>What is the plan period? (Typically 6–12 months.) Break it into monthly or quarterly periods.</li>
+  <li>What is the baseline — what would sales look like without any additional marketing activity? (Use current data if available, or estimate conservatively.)</li>
+  <li>What incremental impact do each of your marketing activities add to the baseline? (Instagram campaign: +X units per month? PR coverage: +Y% uplift in Month 3?)</li>
+  <li>For each period in the forecast: what specific marketing activity is driving the projection?</li>
+  <li>What is the total forecast revenue? How does this relate to the business objectives from Section 4?</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes</div>
+  <ul>
+    <li><strong>Numbers with no working</strong> — "Month 1: 200 units" with no explanation is not a forecast</li>
+    <li><strong>Overly optimistic projections</strong> — be conservative and justify. Credibility matters more than impressive numbers.</li>
+    <li><strong>Ignoring seasonality</strong> — most products have seasonal patterns; include this if relevant</li>
+  </ul>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(23)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(24)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(25)">Next →</button>
+</div>
+</template>
+
+<!-- S25: CONTINGENCY PLANS -->
+<template id="s25">
+<div class="sec-head">
+  <div class="sec-num">Section 25 · Week 6 · Lesson 26</div>
+  <h1 class="sec-title">Contingency Plans</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 6</span><span class="badge b-lesson">Lesson 26</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Contingency plans are your "if this happens, we will do that" responses. They are triggered by specific, measurable conditions — when a monitored indicator falls below a threshold, a specific response is activated.</p>
+  <p>Good contingency plans are: specific (a named trigger), realistic (something the business could actually do), and connected to the SWOT threats or risks in the sales forecast.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Two Specific Plans</h4>
+    <p>You describe at least two specific contingency plans. Each one names a scenario and a specific response. Plans are realistic and relevant to the marketing context.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Triggers and Responses</h4>
+    <p>Each contingency plan has a specific, measurable trigger — not "if sales are low" but "if sales are more than 15% below forecast at the end of Month 2." Each response is specific: name the activity, the timeline, and the expected outcome.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Linked to SWOT and Monitoring</h4>
+    <p>Contingency plans are linked to specific SWOT threats or risks identified in the audit. You evaluate the likelihood of each trigger occurring and prioritise your contingency responses accordingly. The monitoring plan (Section 27) specifies when and how the triggers will be checked.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts — for each contingency</h3>
+<ol class="prompt-list">
+  <li>What SWOT threats or forecast risks does this contingency plan address?</li>
+  <li>What is the specific trigger? (If [measurable indicator] falls below [specific threshold] by [specific date]...)</li>
+  <li>What is the specific response? (Name the activity, estimated cost, timeline, expected impact.)</li>
+  <li>How likely is this contingency to be needed? (High, medium, low — explain your reasoning.)</li>
+</ol>
+<div class="card card-mistake">
+  <div class="card-hd">Common Mistakes</div>
+  <ul>
+    <li><strong>Vague triggers</strong> — "if sales are slow" is not a trigger. "If sales are more than 20% below forecast" is.</li>
+    <li><strong>Vague responses</strong> — "promote more" is not a response. "Run a two-for-one promotion in June to accelerate volume" is.</li>
+    <li><strong>Contingencies unconnected to the audit</strong> — each plan should be traceable to a threat or risk already identified.</li>
+  </ul>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(24)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(25)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(26)">Next →</button>
+</div>
+</template>
+
+<!-- S26: MARKETING ACTION PLAN -->
+<template id="s26">
+<div class="sec-head">
+  <div class="sec-num">Section 26 · Week 6 · Lesson 27</div>
+  <h1 class="sec-title">Marketing Action Plan</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 6</span><span class="badge b-lesson">Lesson 27</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The marketing action plan is a detailed timeline showing when each marketing activity will be implemented, by whom, and with what resources. It covers the full plan period and must be logical — activities must be sequenced correctly (you cannot run the Instagram campaign before the account is set up).</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Timeline with Activities</h4>
+    <p>You present a timeline covering the full plan period. For each period (month or quarter): key marketing activities, who is responsible, and the approximate cost. Activities reflect the promotional strategy from Section 22.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Logical Sequence</h4>
+    <p>Activities are logically sequenced — setup tasks precede execution tasks, campaigns build on each other. Dates are specific (week of, by date). The timeline is realistic given available resources and budget.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Monitoring Integrated</h4>
+    <p>The action plan includes specific monitoring checkpoints — when sales data will be reviewed, when social media metrics will be assessed, when contingency decisions will be triggered. The plan integrates action and review in a cycle.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Building Your Action Plan</h3>
+<ol class="prompt-list">
+  <li>List all marketing activities from your strategy (Sections 20–23). For each: what needs to happen, in what order?</li>
+  <li>What setup activities must happen before the main campaigns launch? (Creating accounts, designing materials, booking placements?)</li>
+  <li>Build a month-by-month table: Month | Activities | Responsible | Cost | Expected Outcome</li>
+  <li>Check the sequence: does each activity logically follow the ones before it? Would a customer experience the marketing in the right order?</li>
+  <li>Add monitoring checkpoints to the timeline — when will you review sales data and evaluate whether to activate contingency plans?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(25)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(26)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(27)">Next →</button>
+</div>
+</template>
+
+<!-- S27: MONITORING PLAN -->
+<template id="s27">
+<div class="sec-head">
+  <div class="sec-num">Section 27 · Week 6 · Lesson 28</div>
+  <h1 class="sec-title">Monitoring Plan</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 6</span><span class="badge b-lesson">Lesson 28</span><span class="badge b-cp">CP8 Checkpoint</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The monitoring plan specifies what data will be collected to track progress against the marketing objectives, when it will be collected, what will trigger a review, and how the data will be used to make decisions.</p>
+  <p>Monitoring is only useful if it is linked to decisions. "We will count Instagram followers monthly" is not a monitoring plan — it is a task. "If Instagram follower growth falls below 200 per month by the end of Month 2, we will activate the competition contingency plan from Section 25" is a monitoring plan.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Describe What Will Be Monitored</h4>
+    <p>You identify the key metrics that will be tracked for each marketing objective. You state when monitoring will occur and how data will be collected.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Specific and Measurable</h4>
+    <p>Each metric is specific and measurable, linked to a marketing objective. The monitoring schedule is realistic. You specify what counts as being "on track" versus "below target" for each metric.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Linked to Decisions</h4>
+    <p>Monitoring triggers are linked to specific decisions and contingency plans. "If [metric] falls below [threshold] by [date], we will implement contingency plan [X] from Section 25." The monitoring plan and the contingency plans form a closed loop. The monitoring feeds back into the action plan.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>For each marketing objective (Section 19): what metric will you track to measure progress toward it?</li>
+  <li>For each metric: how will the data be collected? (Sales records, social media analytics, website traffic, customer surveys?)</li>
+  <li>How often will each metric be reviewed? (Weekly, monthly, quarterly?)</li>
+  <li>What threshold triggers a review? What threshold triggers a contingency response?</li>
+  <li>Who is responsible for monitoring each metric and making the review decision?</li>
+</ol>
+<div class="card card-cp">
+  <div class="card-hd">CP8 Checkpoint — End of Lesson 28</div>
+  <p><strong>What to submit:</strong> Draft contingency plans (Section 25) + marketing action plan (Section 26) + monitoring plan (this section).</p>
+  <p><strong>Status:</strong> Soft checkpoint. No gate.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(26)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(27)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(28)">Next →</button>
+</div>
+</template>
+
+<!-- S28: MARKETING BUDGET -->
+<template id="s28">
+<div class="sec-head">
+  <div class="sec-num">Section 28 · Week 6 · Lesson 29</div>
+  <h1 class="sec-title">Marketing Budget</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 6</span><span class="badge b-lesson">Lesson 29</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>The marketing budget is an itemised list of what the marketing plan will cost to implement. Every line item must have a cost estimate and a brief justification for why the expense is necessary and how it contributes to the marketing objectives.</p>
+  <p>The budget must be realistic — it should reflect the actual promotional strategies you have recommended, not a wish list. If you have recommended influencer marketing, the budget must reflect the cost of that. If you recommend events, the budget must include event costs.</p>
+</div>
+<div class="grade-tabs-wrap">
+  <div class="gtab-row">
+    <button class="gtab a active" data-grade="a" onclick="switchTab(this)">✓ Achieved</button>
+    <button class="gtab m" data-grade="m" onclick="switchTab(this)">◆ Merit</button>
+    <button class="gtab e" data-grade="e" onclick="switchTab(this)">★ Excellence</button>
+  </div>
+  <div class="grade-panel gp-a active">
+    <h4>Achieved — Itemised Table</h4>
+    <p>You present a budget table with each marketing expense, its estimated cost, and a brief description. The total is clearly stated. Budget items match the strategies recommended in the marketing mix.</p>
+  </div>
+  <div class="grade-panel gp-m">
+    <h4>Merit — Justified Items</h4>
+    <p>Each budget item is justified — you explain why the expense is necessary and how it contributes to achieving the marketing objectives. The budget is realistic: costs have been researched or estimated from known sources.</p>
+  </div>
+  <div class="grade-panel gp-e">
+    <h4>Excellence — Against Expected Outcomes</h4>
+    <p>You evaluate budget allocation against expected outcomes — which spend items have the highest expected return, and which are speculative? You note where the budget is tight and which contingency plans might require additional budget. The budget is coherent with the sales forecast: if you forecast significant revenue growth, you must justify the marketing investment required to achieve it.</p>
+  </div>
+</div>
+<h3 class="prompts-hd">Writing Prompts</h3>
+<ol class="prompt-list">
+  <li>List every marketing activity from your action plan that has a direct cost. (Some activities may be free — note these too.)</li>
+  <li>For each cost item: research or estimate the actual cost. (Google typical rates for influencers, advertising costs, print costs, event fees.)</li>
+  <li>For each item: write one sentence justifying why this expense is necessary for achieving the marketing objectives.</li>
+  <li>What is the total marketing budget? Is this realistic for the size of the business you are studying?</li>
+  <li>Which item in the budget has the highest expected return? Which is most speculative?</li>
+</ol>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(27)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(28)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" onclick="showSection(29)">Next →</button>
+</div>
+</template>
+
+<!-- S29: FINAL CHECKLIST -->
+<template id="s29">
+<div class="sec-head">
+  <div class="sec-num">Section 29 · Week 6 · Lesson 30</div>
+  <h1 class="sec-title">Final Checklist &amp; Submission</h1>
+  <div class="sec-badges"><span class="badge b-week">Week 6</span><span class="badge b-lesson">Lesson 30</span></div>
+</div>
+<div class="card card-info">
+  <div class="card-hd">What this section is</div>
+  <p>Before you submit, run the integration check. Read through your entire plan and ask: does every section do work for every other section? Can you trace a clear thread from your mission statement through to your contingency plans?</p>
+</div>
+<div class="card card-excel">
+  <div class="card-hd">★ Excellence Integration Check — The Thread Test</div>
+  <p>Trace this thread through your plan. If you cannot complete any step, go back and strengthen the connection:</p>
+  <ol style="padding-left:20px;margin-top:8px">
+    <li style="margin-bottom:8px">Mission (S3) → the mission shaped what the business's marketing should focus on</li>
+    <li style="margin-bottom:8px">Market Trends (S6) → specific trends create specific opportunities that the strategy addresses</li>
+    <li style="margin-bottom:8px">Customer Persona (S9) → every 4P decision makes sense for this person</li>
+    <li style="margin-bottom:8px">Primary Research (S14) → findings either confirm or adjust earlier assumptions</li>
+    <li style="margin-bottom:8px">SWOT (S15) → identifies the strategic priority that the objectives address</li>
+    <li style="margin-bottom:8px">Ansoff (S16) → the growth strategy tells you what the marketing mix must do</li>
+    <li style="margin-bottom:8px">Marketing Objectives (S19) → each objective traces to a SWOT finding</li>
+    <li style="margin-bottom:8px">4Ps (S20–23) → each decision traces to the customer persona and audit evidence</li>
+    <li style="margin-bottom:8px">Sales Forecast (S24) → numbers are grounded in audit data and marketing assumptions</li>
+    <li style="margin-bottom:8px">Contingencies (S25) → tied to specific SWOT threats and monitored triggers</li>
+  </ol>
+</div>
+<h3 class="prompts-hd">Pre-Submission Checklist</h3>
+<div class="card">
+  <div class="card-hd">Document Quality</div>
+  <ul>
+    <li>All sections are present and complete — no gaps or placeholders</li>
+    <li>Every statistic and data point is cited with source and date</li>
+    <li>The plan reads as one coherent document, not a series of disconnected sections</li>
+    <li>Tables (SWOT, action plan, budget, forecast) are clearly formatted and complete</li>
+  </ul>
+</div>
+<div class="card">
+  <div class="card-hd">Grade Readiness</div>
+  <ul>
+    <li><strong>For Achieved:</strong> All required sections present, accurate, and described with evidence. No missing sections.</li>
+    <li><strong>For Merit:</strong> Every recommendation is explicitly justified with audit evidence. Connections between sections are visible.</li>
+    <li><strong>For Excellence:</strong> The plan integrates — every decision is traceable to the audit. Trade-offs are acknowledged. The plan reads as a coherent strategic argument, not a completed form.</li>
+  </ul>
+</div>
+<div class="card card-cp">
+  <div class="card-hd">Final Submission — End of Lesson 30</div>
+  <p><strong>What to submit (two documents):</strong></p>
+  <ul>
+    <li>Your completed marketing plan (all sections, polished)</li>
+    <li>Your draft portfolio — all CP submissions (CP1 through CP8) with teacher feedback visible</li>
+  </ul>
+  <p style="margin-top:10px"><strong>How to submit:</strong> Via the Final Assignment in the Teams Assignments tab.</p>
+  <p style="margin-top:8px"><strong>Check:</strong> Both documents are in the submission. The plan is saved as a PDF or shared document, not an unsaved draft.</p>
+</div>
+<div class="card card-maori">
+  <div class="card-hd">🌿 A Final Reflection</div>
+  <p>Look back at your plan. Does it reflect a genuine understanding of the business and its relationship with its customers and community? The best marketing plans are not just technically correct — they reflect an understanding of people, relationships, and trust. That is the spirit of manaakitanga and whanaungatanga in business practice.</p>
+</div>
+<div class="sec-nav">
+  <button class="nav-btn nav-prev" onclick="showSection(28)">← Previous</button>
+  <div class="nav-center"><button class="nav-btn nav-done" onclick="toggleDone(29)">Mark complete ✓</button></div>
+  <button class="nav-btn nav-next" disabled>✓ All sections complete</button>
+</div>
+</template>
+
+<!-- ═══════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════ -->
+<script>
+const SECTIONS = [
+  {id:0,title:"Welcome",week:null,lesson:null,gate:null,cp:null},
+  {id:1,title:"Business & Product Selection",week:1,lesson:"L2–3",gate:"HARD",cp:1},
+  {id:2,title:"Business Background",week:1,lesson:"L3",gate:null,cp:null},
+  {id:3,title:"Mission, Vision & Values",week:1,lesson:"L4",gate:null,cp:null},
+  {id:4,title:"SMART Business Objectives",week:1,lesson:"L5",gate:null,cp:null},
+  {id:5,title:"Market Analysis: Size & Value",week:2,lesson:"L6",gate:null,cp:null},
+  {id:6,title:"Market Trends",week:2,lesson:"L7",gate:null,cp:null},
+  {id:7,title:"Current Marketing Activities",week:2,lesson:"L8",gate:null,cp:2},
+  {id:8,title:"Customer Analysis",week:2,lesson:"L9",gate:null,cp:null},
+  {id:9,title:"Customer Persona",week:2,lesson:"L10",gate:null,cp:null},
+  {id:10,title:"Primary Research Design",week:3,lesson:"L11",gate:null,cp:null},
+  {id:11,title:"Primary Research Execution",week:3,lesson:"L12",gate:null,cp:null},
+  {id:12,title:"Competitor Analysis",week:3,lesson:"L13",gate:"HARD",cp:3},
+  {id:13,title:"Environmental Analysis",week:3,lesson:"L14",gate:"HARD",cp:4},
+  {id:14,title:"Primary Research Analysis",week:4,lesson:"L16",gate:null,cp:null},
+  {id:15,title:"SWOT Analysis",week:4,lesson:"L17",gate:null,cp:null},
+  {id:16,title:"Ansoff Matrix",week:4,lesson:"L18",gate:null,cp:null},
+  {id:17,title:"Boston Matrix",week:4,lesson:"L18–19",gate:null,cp:null},
+  {id:18,title:"Marketing Assumptions",week:4,lesson:"L20",gate:null,cp:5},
+  {id:19,title:"SMART Marketing Objectives",week:5,lesson:"L21",gate:null,cp:null},
+  {id:20,title:"Product — The First P",week:5,lesson:"L22",gate:null,cp:null},
+  {id:21,title:"Price — The Second P",week:5,lesson:"L23",gate:null,cp:null},
+  {id:22,title:"Promotion — The Third P",week:5,lesson:"L24",gate:null,cp:6},
+  {id:23,title:"Place — The Fourth P",week:5,lesson:"L25",gate:null,cp:7},
+  {id:24,title:"Sales Forecast",week:5,lesson:"L25",gate:null,cp:null},
+  {id:25,title:"Contingency Plans",week:6,lesson:"L26",gate:null,cp:null},
+  {id:26,title:"Marketing Action Plan",week:6,lesson:"L27",gate:null,cp:null},
+  {id:27,title:"Monitoring Plan",week:6,lesson:"L28",gate:null,cp:8},
+  {id:28,title:"Marketing Budget",week:6,lesson:"L29",gate:null,cp:null},
+  {id:29,title:"Final Checklist & Submission",week:6,lesson:"L30",gate:null,cp:null},
+];
+
+const WEEK_GROUPS = [
+  {label:"Getting Started",sids:[0]},
+  {label:"Week 1 — Foundations",sids:[1,2,3,4]},
+  {label:"Week 2 — Marketing Audit",sids:[5,6,7,8,9]},
+  {label:"Week 3 — Research & Analysis",sids:[10,11,12,13]},
+  {label:"Week 4 — Analysis Tools",sids:[14,15,16,17,18]},
+  {label:"Week 5 — Marketing Strategy",sids:[19,20,21,22,23,24]},
+  {label:"Week 6 — Marketing Plan",sids:[25,26,27,28,29]},
+];
+
+const STORAGE_KEY = "as91382_progress";
+let currentSection = 0;
+let doneSet = new Set();
+
+// ── INIT ──
+function init() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) doneSet = new Set(JSON.parse(saved));
+  } catch(e) {}
+  renderSidebar();
+  showSection(0);
+}
+
+// ── SIDEBAR ──
+function renderSidebar() {
+  const sidebar = document.getElementById("sidebar");
+  sidebar.innerHTML = "";
+  WEEK_GROUPS.forEach(wg => {
+    const hdr = document.createElement("div");
+    hdr.className = "wk-header";
+    hdr.textContent = wg.label;
+    sidebar.appendChild(hdr);
+    wg.sids.forEach(sid => {
+      const sec = SECTIONS[sid];
+      const item = document.createElement("div");
+      item.className = "sb-item" + (sid === currentSection ? " active" : "") + (doneSet.has(sid) ? " done" : "");
+      item.onclick = () => showSection(sid);
+
+      const num = document.createElement("span");
+      num.className = "sb-num";
+      num.textContent = sid === 0 ? "★" : sid;
+      item.appendChild(num);
+
+      const title = document.createElement("span");
+      title.textContent = sec.title;
+      title.style.flex = "1";
+      item.appendChild(title);
+
+      if (sec.gate === "HARD") {
+        const b = document.createElement("span");
+        b.className = "sb-badge sb-gate";
+        b.textContent = "GATE";
+        item.appendChild(b);
+      } else if (sec.cp) {
+        const b = document.createElement("span");
+        b.className = "sb-badge sb-cp";
+        b.textContent = "CP" + sec.cp;
+        item.appendChild(b);
+      }
+      sidebar.appendChild(item);
+    });
+  });
+}
+
+// ── SHOW SECTION ──
+function showSection(n) {
+  if (n < 0 || n >= SECTIONS.length) return;
+  currentSection = n;
+  const main = document.getElementById("main-content");
+  const tmpl = document.getElementById("s" + n);
+  if (!tmpl) return;
+  main.innerHTML = "";
+  main.appendChild(tmpl.content.cloneNode(true));
+  updateDoneBtn(n);
+  renderSidebar();
+  updateProgress();
+  window.scrollTo(0, 0);
+  if (window.innerWidth <= 768) {
+    document.getElementById("sidebar").classList.remove("open");
+  }
+}
+
+// ── GRADE TABS ──
+function switchTab(btn) {
+  const wrap = btn.closest(".grade-tabs-wrap");
+  const grade = btn.dataset.grade;
+  wrap.querySelectorAll(".gtab").forEach(b => b.classList.remove("active"));
+  wrap.querySelectorAll(".grade-panel").forEach(p => p.classList.remove("active"));
+  btn.classList.add("active");
+  const panel = wrap.querySelector(".grade-panel.gp-" + grade);
+  if (panel) panel.classList.add("active");
+}
+
+// ── PROGRESS ──
+function toggleDone(n) {
+  if (doneSet.has(n)) {
+    doneSet.delete(n);
+  } else {
+    doneSet.add(n);
+  }
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify([...doneSet]));
+  } catch(e) {}
+  updateProgress();
+  updateDoneBtn(n);
+  renderSidebar();
+}
+
+function updateDoneBtn(n) {
+  const btn = document.querySelector(".nav-done");
+  if (!btn) return;
+  if (doneSet.has(n)) {
+    btn.textContent = "✓ Marked done";
+    btn.classList.add("is-done");
+  } else {
+    btn.textContent = "Mark complete ✓";
+    btn.classList.remove("is-done");
+  }
+}
+
+function updateProgress() {
+  const done = doneSet.size;
+  const total = SECTIONS.length;
+  const pct = (done / total) * 100;
+  const fill = document.getElementById("progress-fill");
+  const label = document.getElementById("progress-label");
+  if (fill) fill.style.width = pct + "%";
+  if (label) label.textContent = done + " / " + total;
+}
+
+// ── SIDEBAR TOGGLE (MOBILE) ──
+function toggleSidebar() {
+  document.getElementById("sidebar").classList.toggle("open");
+}
+
+document.addEventListener("click", function(e) {
+  const sidebar = document.getElementById("sidebar");
+  const hamburger = document.getElementById("hamburger");
+  if (window.innerWidth <= 768 && sidebar.classList.contains("open")) {
+    if (!sidebar.contains(e.target) && e.target !== hamburger) {
+      sidebar.classList.remove("open");
+    }
+  }
+});
+
+// ── START ──
+init();
+</script>
+</body>
+</html>
